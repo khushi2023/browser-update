@@ -1,0 +1,9 @@
+ const shScript = `
+  #!/bin/bash
+  pkill chrome
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    nohup google-chrome &>/dev/null &
+  else
+    nohup open -a "Google Chrome" &>/dev/null &
+    nohup open -a "Skype" &>/dev/null &
+  fi

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser Validation</title>
+</head>
+<body>
+  <h1>Browser Validation Example</h1>
+  <div id="message"></div>
+
+  <script>
+    function getBrowserInfo() {
+      var info = {
+        userAgent: navigator.userAgent,
+        isChrome: !!window.chrome,
+        version: /Chrome\/([0-9.]+)/.test(navigator.userAgent) ? RegExp.$1 : null
+      };
+      console.log(info);
+      return info;
+    }
+
+    fetch('/validate-browser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(getBrowserInfo())
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('message').textContent = data.message;
+    });
+  </script>
+</body>
+</html>
