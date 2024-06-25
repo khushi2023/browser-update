@@ -1,0 +1,63 @@
+css
+Copy code
+/* update-modal.component.css */
+.suggestion-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  z-index: 1050; /* Make sure it appears above other elements */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.box{
+  padding: 5px;
+  margin: 10px;
+}
+.suggestion-bar .modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.suggestion-bar .close {
+  float: right;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  color: black;
+  right: 0;
+}
+
+.suggestion-bar .btn-primary {
+  background-color: white;
+  color: #007bff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.suggestion-bar .btn-primary:hover {
+  background-color: #e2e6ea;
+}
+
+/* Custom class for the suggestion bar modal */
+.suggestion-bar-modal .modal-dialog {
+  margin: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  position: fixed;
+  transform: none;
+}
+
+.suggestion-bar-modal .modal-content {
+  border: none;
+  box-shadow: none;
+}
