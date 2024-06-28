@@ -26,4 +26,10 @@ export class ModalBoxComponent {
     }
    })
   }
+
+  //when clicked on update button
+  updateModal(){
+    window.open('https://www.google.com/chrome/', '_blank');
+    this.activeModal.close()
+  }
 }

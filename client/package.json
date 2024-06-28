@@ -19,6 +19,8 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "bowser": "^2.11.0",
     "is-wsl": "^3.1.0",
     "modernizr": "^3.13.0",

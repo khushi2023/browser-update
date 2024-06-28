@@ -7,7 +7,7 @@ import { Observable, catchError, map, of } from 'rxjs';
 })
 export class RelaunchChromeService {
   private url = "http://localhost:3000"
-  chromeInstalled!:boolean;
+  // chromeInstalled!:boolean;
 
   constructor(private http: HttpClient) {}
 

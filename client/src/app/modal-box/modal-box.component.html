@@ -1,17 +1,3 @@
-<!-- <div class="modal-header">
-    <h4 class="modal-title">Browser Update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>A new version of Chrome is available. Please download the latest version from the official website.</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" style="margin-right: 10px;"><a target= "_blank" href="https://www.google.com/chrome/what-you-make-of-it/">Go to official Page</a></button>
-    <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">OK</button>
-  </div> -->
-
   <div class="suggestion-bar">
     <div class="box">
       <button type="button" class="btn-dark close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
@@ -27,7 +13,7 @@
     </div>
     <div>
       <div *ngIf="isUpdate">
-        <a href="https://www.google.com/chrome/" class="btn btn-primary" target="_blank">Download</a>
+        <a  class="btn btn-primary" target="_blank" (click)="updateModal()">Download</a>
         <button type="button" class="btn btn-primary" (click)="activeModal.dismiss('Cross click')">Ignore</button> 
       </div>
       <button *ngIf="!isUpdate" type="button" class="btn btn-primary"><a target="_blank" (click)="openRelaunch()">Relaunch</a></button>
