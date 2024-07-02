@@ -1,17 +1,4 @@
-css
-Copy code
-/* update-modal.component.css */
-.suggestion-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #007bff;
-  color: white;
-  z-index: 1050; /* Make sure it appears above other elements */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.suggestion-bar{
   padding: 0.75rem 1rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
@@ -34,7 +21,7 @@ Copy code
 }
 
 .suggestion-bar .btn-primary {
-  background-color: white;
+  background-color: rgb(126, 178, 236);
   color: #007bff;
   border: none;
   padding: 0.5rem 1rem;

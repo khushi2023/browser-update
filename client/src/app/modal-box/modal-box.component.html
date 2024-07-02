@@ -14,7 +14,7 @@
     <div>
       <div *ngIf="isUpdate">
         <a  class="btn btn-primary" target="_blank" (click)="updateModal()">Download</a>
-        <button type="button" class="btn btn-primary" (click)="activeModal.dismiss('Cross click')">Ignore</button> 
+        <button type="button" class="btn btn-primary" (click)="activeModal.dismiss('Cross click'); checkUpdate()">Ignore</button> 
       </div>
       <button *ngIf="!isUpdate" type="button" class="btn btn-primary"><a target="_blank" (click)="openRelaunch()">Relaunch</a></button>
     </div>

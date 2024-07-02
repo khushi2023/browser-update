@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Input } from '@angular/core';
+import { EventEmitter, Input, Output } from '@angular/core';
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RelaunchChromeService } from '../relaunch-chrome.service';
@@ -15,6 +15,8 @@ import { RelaunchChromeService } from '../relaunch-chrome.service';
 })
 export class ModalBoxComponent {
   @Input() isUpdate: boolean = true;
+  flag:any;
+  @Output() flagChange = new EventEmitter<boolean>();
   requestToRelaunch:boolean = false;
   message:any;
   constructor(public activeModal: NgbActiveModal, private relaunchService:RelaunchChromeService) {}
@@ -29,7 +31,19 @@ export class ModalBoxComponent {
 
   //when clicked on update button
   updateModal(){
+    // #########################################
+    this.flag = false;
+    this.flagChange.emit(this.flag);
+    // #########################################
     window.open('https://www.google.com/chrome/', '_blank');
     this.activeModal.close()
   }
+// ##############################################
+  //when clicked on ignore button
+  checkUpdate(){
+    this.flag=true;
+    console.log(this.flag);
+    this.flagChange.emit(this.flag);
+  }
+// ###########################################
 }
