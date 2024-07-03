@@ -1,6 +1,6 @@
   <div class="suggestion-bar">
     <div class="box">
-      <button type="button" class="btn-dark close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <button type="button" class="btn-dark close" aria-label="Close" (click)="activeModal.dismiss('Cross click');  checkUpdate()">
         <span aria-hidden="true">&times;</span>
       </button>
       <h4 class="modal-title">{{ isUpdate ? 'Browser Update' : 'Relaunch Browser' }}</h4>

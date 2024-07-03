@@ -14,7 +14,7 @@ import { RelaunchChromeService } from '../relaunch-chrome.service';
   styleUrl: './modal-box.component.css'
 })
 export class ModalBoxComponent {
-  @Input() isUpdate: boolean = true;
+  @Input() isUpdate!: boolean;
   flag:any;
   @Output() flagChange = new EventEmitter<boolean>();
   requestToRelaunch:boolean = false;

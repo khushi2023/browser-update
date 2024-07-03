@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit, SimpleChange } from '@angular/core';
+import { Component, NgModule, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { detect } from 'detect-browser';
@@ -17,18 +17,37 @@ import { CommonModule } from '@angular/common';
 
 export class AppComponent implements OnInit{
   machineVersion: any;
-  constructor(public modalService: NgbModal, private relaunchService: RelaunchChromeService) { }
+  intervalId: any;
   title = 'browser-update';
-  flag:any;
+  flag: any;
+  constructor(public modalService: NgbModal, private relaunchService: RelaunchChromeService) { }
   ngOnInit(): void {
     this.checkChromeVersion();
+    this.startInterval();
   }
+  startInterval() {
+    this.intervalId = setInterval(() => {
+      //to check if flag is true and if component is not open
+      if (!this.modalService.hasOpenModals() && this.flag) {
+        this.checkChromeVersion();
+      }
+    }, 4000);
+  }
+
+  stopInterval() {
+    console.log(this.intervalId);
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  }
+
   async checkChromeVersion() {
     const browser = detect();
- console.log(browser);
+    console.log(browser);
 
     if (browser && browser.name === 'chrome') {
-      const currentVersion = parseInt(browser.version)
+      const currentVersion = parseInt(browser.version);
       console.log(currentVersion);
       console.log(browser.os);
       let url = `https://chromiumdash.appspot.com/fetch_releases?channel=Stable&platform=${browser.os}&num=1`;
@@ -59,28 +78,44 @@ export class AppComponent implements OnInit{
     }
   }
   showDownloadDialog() {
+    this.stopInterval(); // Stop the interval when showing the popup
+
     let modalRef = this.modalService.open(ModalBoxComponent, { centered: false, backdrop: 'static', windowClass: 'suggestion-bar-modal' });
-    modalRef.componentInstance.isUpdate = true;
     
-    //#######################################################
-    // modalRef.componentInstance.flag = true;
-    // console.log(this.flag);
-    // const intervalId = setInterval(() => {
-    //   if (this.flag === false) {
-    //     const modalRef = this.modalService.open(ModalBoxComponent, { centered: false, windowClass: 'suggestion-bar-modal' });
-    //   } else {
-    //     clearInterval(intervalId); // Stop the interval when flag is true
-    //   }
-    // }, 5000);
+    //bind isUpdate property and flag-> for showing popup
+    modalRef.componentInstance.isUpdate = true;
+ 
+    //flag-> true popup will appear
+    //flag-> false popup will not appear
+  
     modalRef.componentInstance.flagChange.subscribe((updatedFlag: boolean) => {
       this.flag = updatedFlag; // Update the flag in the parent component
-      console.log('Updated flag in AppComponent:', this.flag);
+      console.log('Check Update flag in AppComponent:', this.flag);
     });
-    // ###################################################
+
+    // modalRef.result.then((result)=>{
+    //   // if(result){
+    //   //   this.flag = result
+    //   // }
+    //   // console.log(this.flag);
+    //   console.log(result);
+      
+    // })
+
+    modalRef.result.then(
+      () => this.startInterval(), // Restart the interval after the popup is closed
+      () => this.startInterval()  // Restart the interval if the popup is dismissed
+    );
   }
 
   showRelaunchDialog() {
+    this.stopInterval(); // Stop the interval when showing the popup
+
     const modalRef = this.modalService.open(ModalBoxComponent, { centered: false, windowClass: 'suggestion-bar-modal' });
     modalRef.componentInstance.isUpdate = false;
+
+    modalRef.result.then(
+      () => this.startInterval() // Restart the interval after the popup is close  // Restart the interval if the popup is dismissed
+    );
   }
 }
